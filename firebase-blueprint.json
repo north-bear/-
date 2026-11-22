@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "TreeNote": {
+      "title": "TreeNote",
+      "description": "A Google Keep-style sticky note or checklist pinned onto the Christmas tree widget and synced per user.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Authenticated Firebase Auth UID of the note owner."
+        },
+        "title": {
+          "type": "string",
+          "description": "Note title displayed on cards and Christmas tree ornaments (0..120 chars)."
+        },
+        "content": {
+          "type": "string",
+          "description": "Freeform text note body (0..4000 chars)."
+        },
+        "colorKey": {
+          "type": "string",
+          "enum": ["CREAM", "PINE", "CRANBERRY", "AMBER", "FROST", "BERRY"],
+          "description": "Festive sticky note color palette token."
+        },
+        "pinnedToTree": {
+          "type": "boolean",
+          "description": "Whether this note is pinned onto the Christmas tree home screen widget."
+        },
+        "checklistMode": {
+          "type": "boolean",
+          "description": "Whether this note renders as an interactive checklist."
+        },
+        "checklistItems": {
+          "type": "array",
+          "description": "Up to 30 checklist items (each map with itemId, text, checked)."
+        },
+        "treeTier": {
+          "type": "integer",
+          "description": "Preferred Christmas tree tier (0 = auto, 1..4 = specific tier)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server-assigned creation timestamp (FieldValue.serverTimestamp())."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server-assigned last modification timestamp (FieldValue.serverTimestamp())."
+        }
+      },
+      "required": [
+        "userId",
+        "title",
+        "content",
+        "colorKey",
+        "pinnedToTree",
+        "checklistMode",
+        "checklistItems",
+        "treeTier",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/notes/{noteId}": {
+      "schema": {
+        "$ref": "#/entities/TreeNote"
+      },
+      "description": "User-scoped Christmas tree sticky notes and checklists."
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Remix 樱花记事",
+  "description": "2×2 樱花花瓣形状的谷歌 Keep 风格桌面记事小组件与便签应用，支持彩色便利贴、待办清单与云端同步。",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,94 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global safety net: deny all reads and writes by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidColorKey(colorKey) {
+      return colorKey in ['CREAM', 'PINE', 'CRANBERRY', 'AMBER', 'FROST', 'BERRY'];
+    }
+
+    function isValidTreeNote(data, userId) {
+      return data.userId is string &&
+             data.userId == userId &&
+             data.userId.size() >= 1 &&
+             data.userId.size() <= 128 &&
+             data.title is string &&
+             data.title.size() <= 120 &&
+             data.content is string &&
+             data.content.size() <= 4000 &&
+             data.colorKey is string &&
+             isValidColorKey(data.colorKey) &&
+             data.pinnedToTree is bool &&
+             data.checklistMode is bool &&
+             data.checklistItems is list &&
+             data.checklistItems.size() <= 30 &&
+             (data.checklistItems.size() == 0 || data.checklistItems[0] is map) &&
+             data.treeTier is int &&
+             data.treeTier >= 0 &&
+             data.treeTier <= 4;
+    }
+
+    match /users/{userId}/notes/{noteId} {
+      allow get: if isOwner(userId) && isValidId(noteId);
+
+      // User-scoped subcollection: ownership isolated by path wildcard {userId}
+      allow list: if isOwner(userId);
+
+      allow create: if isOwner(userId) &&
+                       isValidId(noteId) &&
+                       incoming().keys().hasAll([
+                         'userId', 'title', 'content', 'colorKey',
+                         'pinnedToTree', 'checklistMode', 'checklistItems',
+                         'treeTier', 'createdAt', 'updatedAt'
+                       ]) &&
+                       incoming().keys().hasOnly([
+                         'userId', 'title', 'content', 'colorKey',
+                         'pinnedToTree', 'checklistMode', 'checklistItems',
+                         'treeTier', 'createdAt', 'updatedAt'
+                       ]) &&
+                       incoming().createdAt is timestamp &&
+                       incoming().createdAt <= request.time &&
+                       incoming().updatedAt is timestamp &&
+                       incoming().updatedAt <= request.time &&
+                       isValidTreeNote(incoming(), userId);
+
+      allow update: if isOwner(userId) &&
+                       isValidId(noteId) &&
+                       isValidTreeNote(incoming(), userId) &&
+                       incoming().userId == existing().userId &&
+                       incoming().createdAt == existing().createdAt &&
+                       incoming().updatedAt is timestamp &&
+                       incoming().updatedAt <= request.time &&
+                       incoming().diff(existing()).affectedKeys().hasOnly([
+                         'title', 'content', 'colorKey', 'pinnedToTree',
+                         'checklistMode', 'checklistItems', 'treeTier', 'updatedAt'
+                       ]);
+
+      allow delete: if isOwner(userId) && isValidId(noteId);
+    }
+  }
+}

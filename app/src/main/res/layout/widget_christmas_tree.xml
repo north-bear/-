@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:padding="2dp">
+
+    <!-- 2x2 MD3 7-lobed Cookie / Sakura translucent background -->
+    <ImageView
+        android:id="@+id/widget_tree_canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/widget_tree_cd"
+        android:scaleType="fitCenter"
+        android:src="@drawable/bg_md3_cookie_7" />
+
+    <!-- Content layered cleanly inside the 2x2 MD3 Cookie -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="14dp"
+        android:paddingBottom="12dp">
+
+        <!-- Circular top '+' badge nestled inside the top lobe (MD3 style) -->
+        <FrameLayout
+            android:id="@+id/widget_star_hotspot"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:contentDescription="@string/widget_quick_add_cd">
+
+            <ImageView
+                android:id="@+id/widget_badge_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:importantForAccessibility="no"
+                android:src="@drawable/widget_top_badge" />
+
+            <TextView
+                android:id="@+id/widget_badge_plus"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="@color/widget_md3_badge_fg"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <!-- Center note tap target -->
+        <LinearLayout
+            android:id="@+id/widget_note_body"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="2dp">
+
+            <TextView
+                android:id="@+id/widget_note_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textColor="@color/widget_md3_text_primary"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/widget_note_snippet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textColor="@color/widget_md3_text_secondary"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Bottom note pager pill -->
+        <LinearLayout
+            android:id="@+id/widget_pager_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:background="@drawable/widget_nav_pill"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="6dp">
+
+            <TextView
+                android:id="@+id/widget_prev_btn"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="@string/widget_prev_cd"
+                android:gravity="center"
+                android:text="‹"
+                android:textColor="@color/widget_md3_pill_fg"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/widget_page_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="4dp"
+                android:text="1/1"
+                android:textColor="@color/widget_md3_pill_fg"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/widget_next_btn"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="@string/widget_next_cd"
+                android:gravity="center"
+                android:text="›"
+                android:textColor="@color/widget_md3_pill_fg"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">樱花记事</string>
+    <string name="widget_description">2×2 樱花花瓣形状的谷歌 Keep 风格桌面记事小组件，点击顶部加号快速记事，支持翻页查看置顶便利贴。</string>
+    <string name="widget_tree_cd">2×2 樱花花瓣记事小组件</string>
+    <string name="widget_quick_add_cd">快速新建便利贴</string>
+    <string name="widget_prev_cd">上一条便利贴</string>
+    <string name="widget_next_cd">下一条便利贴</string>
+    <string name="widget_empty_prompt">轻点 + 添加便利贴</string>
+    <string name="widget_signin_prompt">轻点登录 Google 同步</string>
+</resources>

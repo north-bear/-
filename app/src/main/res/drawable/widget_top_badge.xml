@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:viewportWidth="36"
+    android:viewportHeight="36">
+    <path
+        android:fillColor="@color/widget_md3_badge_bg"
+        android:pathData="M18,2A16,16 0 1,0 18,34A16,16 0 1,0 18,2Z" />
+</vector>

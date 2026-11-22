@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- MD3 Light Theme fallback colors for 2x2 Widget (API 24-30) -->
+    <color name="widget_md3_surface">#CCEFE7</color>
+    <color name="widget_md3_border">#33006B5E</color>
+    <color name="widget_md3_badge_bg">#006B5E</color>
+    <color name="widget_md3_badge_fg">#FFFFFFFF</color>
+    <color name="widget_md3_text_primary">#06201C</color>
+    <color name="widget_md3_text_secondary">#CC1C3A35</color>
+    <color name="widget_md3_pill_bg">#1A06201C</color>
+    <color name="widget_md3_pill_fg">#06201C</color>
+</resources>

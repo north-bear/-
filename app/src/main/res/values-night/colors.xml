@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MD3 Dark Theme fallback colors for 2x2 Widget (API 24-30) -->
+    <color name="widget_md3_surface">#0F3A35</color>
+    <color name="widget_md3_border">#388EE0D2</color>
+    <color name="widget_md3_badge_bg">#3EC2AE</color>
+    <color name="widget_md3_badge_fg">#003730</color>
+    <color name="widget_md3_text_primary">#E2F6F1</color>
+    <color name="widget_md3_text_secondary">#B8DAD2</color>
+    <color name="widget_md3_pill_bg">#38000000</color>
+    <color name="widget_md3_pill_fg">#E2F6F1</color>
+</resources>
